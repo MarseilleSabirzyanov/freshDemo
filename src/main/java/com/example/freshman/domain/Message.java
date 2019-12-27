@@ -14,11 +14,13 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
+
+    private String filename;
 
     private String text;
     private String tag;
