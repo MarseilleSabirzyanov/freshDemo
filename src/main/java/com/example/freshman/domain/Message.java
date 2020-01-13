@@ -3,15 +3,16 @@ package com.example.freshman.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 public class Message {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,7 +23,10 @@ public class Message {
 
     private String filename;
 
+    @NotBlank(message = "please, fill the message")
+    @Length(max = 2048, message = "Message more then 2048")
     private String text;
+    @Length(max = 255, message = "Message too long (more than 255)")
     private String tag;
 
     public String getAuthorName() {
